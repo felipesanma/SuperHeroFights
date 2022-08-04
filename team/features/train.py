@@ -3,6 +3,5 @@ class TeamTraining:
     Entrenamiento del equipo
     """
 
-    def __init__(self, *, members: list, alignment: str):
+    def __init__(self, *, members: list):
         self.members = members
-        self.alignment = alignment
