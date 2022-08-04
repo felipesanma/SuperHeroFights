@@ -1,0 +1,2 @@
+class TeamTraining:
+    pass
