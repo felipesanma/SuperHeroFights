@@ -23,6 +23,7 @@ class TeamTraining:
                 name=member.name,
                 id=member.id,
                 alignment=member.biography["alignment"],
+                avatar=member.images["xs"],
                 power_stats=member.powerstats,
             )
             members_in_training.append(member_train)
