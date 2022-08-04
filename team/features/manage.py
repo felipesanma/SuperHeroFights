@@ -44,12 +44,12 @@ class TeamManagement:
 
     def add_random_member(self):
 
+        id = random.choice(tuple(POSSIBLE_HEROE_ID))
+
         if len(self.members_names) == MAX_HERO_MEMBERS:
             msg = f"Team already has {MAX_HERO_MEMBERS} members, try removing members first. Hero id: {id}"
             print(msg)
             return msg, 405
-
-        id = random.choice(tuple(POSSIBLE_HEROE_ID))
 
         while id in self.members_id:
             msg = f"Heroe id={id}, already exist in team. Trying with another id"
