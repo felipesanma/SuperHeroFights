@@ -28,3 +28,17 @@ print(work)
 size = "sm"
 image = superhero.images.get_url_by_size(size=size)
 print(image)
+
+
+FIRST_HERO_ID = 1
+LAST_HERO_ID = 731
+black_list = []
+for id in range(FIRST_HERO_ID, LAST_HERO_ID + 1):
+    print(id)
+    superhero = SuperHero(id=id)
+    superheroe, status_code = superhero.work.get()
+    if status_code != 200:
+        print("to black list: ", id)
+        black_list.append(id)
+
+print(black_list)
