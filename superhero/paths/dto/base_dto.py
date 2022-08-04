@@ -1,0 +1,2 @@
+class DTO:
+    pass
