@@ -30,6 +30,9 @@ image = superhero.images.get_url_by_size(size=size)
 print(image)
 
 
+"""
+Get blacklist
+
 FIRST_HERO_ID = 1
 LAST_HERO_ID = 731
 black_list = []
@@ -42,3 +45,4 @@ for id in range(FIRST_HERO_ID, LAST_HERO_ID + 1):
         black_list.append(id)
 
 print(black_list)
+"""
