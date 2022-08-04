@@ -1,4 +1,7 @@
-from .config import MAX_HERO_MEMBERS
+from typing import List
+
+from .superhero.paths.superhero_api_dto import SuperHeroCompleteInformation
+from .team_dto import MemberInTraining
 
 
 class TeamTraining:
@@ -9,8 +12,23 @@ class TeamTraining:
     def __init__(self, *, members: list):
         self.members = self._convert_to_train_member(members)
 
-    def _convert_to_train_member(self, members):
-        NotImplementedError
+    def _convert_to_train_member(
+        self, members: List[SuperHeroCompleteInformation]
+    ) -> MemberInTraining:
+        members_in_training = []
+        for member in members:
+            member_train = MemberInTraining(
+                name=member.name,
+                id=member.id,
+                alignment=member.biography["alignment"],
+                power_stats=member.powerstats,
+                fight_stats=None,
+                attacks=None,
+                is_aligned=None,
+                ready_to_fight=False,
+            )
+            members_in_training.append(member_train)
+        return members_in_training
 
     def actual_stamina(self):
         """
