@@ -1,3 +1,4 @@
+import random
 from typing import List
 
 from .superhero.paths.superhero_api_dto import SuperHeroCompleteInformation
@@ -34,7 +35,7 @@ class TeamTraining:
         """
         AS: Actual Stamina, valor aleatorio antre 0 y 10
         """
-        NotImplementedError
+        return random.randint(0, 10)
 
     def hp(self):
         NotImplementedError

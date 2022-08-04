@@ -21,8 +21,8 @@ class Team:
             n_of_heroes = MAX_HERO_MEMBERS - len(self.manage.members)
             self.manage.add_multiple_random(n_of_heroes)
         self.train = TeamTraining(members=self.manage.members)
+        self.members_in_training = self.train.members
         print("Team ready to train")
-        print(self.manage.members_id)
 
     def create(self):
         self._set_train()

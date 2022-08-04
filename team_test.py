@@ -80,4 +80,4 @@ print(team.members)
 # Test 9 create
 team = Team()
 team.create()
-print(team.train.members)
+print(team.members_in_training)
