@@ -1,3 +1,5 @@
+from ctypes import alignment
+
 from team import Team
 
 """
@@ -79,10 +81,16 @@ team = Team()
 team.create()
 print(team.members_in_training)
 
-"""
-
 # Test 10 create
 team = Team()
 team.create()
 print(team.members_in_training)
 print(team.alignment)
+"""
+
+# Test 11 fb
+team = Team()
+team.create()
+print("team alignment: ", team.alignment)
+team.train.fb()
+print(team.members_in_training)

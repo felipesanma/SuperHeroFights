@@ -28,7 +28,7 @@ class TeamTraining:
             members_in_training.append(member_train)
         return members_in_training
 
-    def actual_stamina(self):
+    def actual_stamina(self) -> int:
         """
         AS: Actual Stamina, valor aleatorio antre 0 y 10
         """
@@ -37,7 +37,7 @@ class TeamTraining:
     def hp(self):
         NotImplementedError
 
-    def get_team_alignment(self):
+    def get_team_alignment(self) -> str:
         """
         Alignment: será el de la mayoría.
         """
@@ -54,11 +54,22 @@ class TeamTraining:
         print("team_alignment_count: ", team_alignment)
         return result
 
-    def fb(self):
+    def fb(self) -> None:
         """
         Filiation Coefficient: bonus o penalización, según la naturaleza del personaje vs la de su equipo
         """
-        NotImplementedError
+        fb = None
+        for member in self.members:
+
+            if member.alignment == self.team_alignment:
+                fb = 1 + random.randint(0, 9)
+                member.is_aligned = True
+            else:
+                fb = round(1 / (1 + random.randint(0, 9)), 2)
+                member.is_aligned = False
+
+            member.fb = fb
+            print(member.name, member.fb, member.is_aligned, member.alignment)
 
     def fight_stats(self):
         NotImplementedError
