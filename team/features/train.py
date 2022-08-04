@@ -52,7 +52,7 @@ class TeamTraining:
                     break
             else:
                 team_alignment[member.alignment] = 1
-        print("team_alignment_count: ", team_alignment)
+        print("Team Alignment ready")
         return result
 
     def fb(self) -> None:
@@ -70,10 +70,14 @@ class TeamTraining:
                 member.is_aligned = False
 
             member.fb = fb
-            print(member.name, member.fb, member.is_aligned, member.alignment)
+        print("Filiation Coefficient added")
 
     def fight_stats(self):
-        NotImplementedError
+
+        for member in self.members:
+            print(member)
+            for stat in member.power_stats:
+                print(stat)
 
     def mental_attack(self):
         NotImplementedError
