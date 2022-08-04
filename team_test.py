@@ -75,3 +75,11 @@ print(team.members_names)
 print(team.members)
 
 """
+
+
+# Test 9 train fail
+a_lot_of_heroes = [1, 30]
+team = Team()
+team.manage.add_multiple_by_id(a_lot_of_heroes)
+print(team.members_by_id)
+team.set_train()
