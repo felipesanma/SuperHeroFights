@@ -74,10 +74,15 @@ print(team.members_by_id)
 print(team.members_names)
 print(team.members)
 
-"""
-
-
 # Test 9 create
 team = Team()
 team.create()
 print(team.members_in_training)
+
+"""
+
+# Test 10 create
+team = Team()
+team.create()
+print(team.members_in_training)
+print(team.alignment)

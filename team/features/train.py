@@ -12,6 +12,7 @@ class TeamTraining:
 
     def __init__(self, *, members: list):
         self.members = self._convert_to_train_member(members)
+        self.team_alignment = self.get_team_alignment()
 
     def _convert_to_train_member(
         self, members: List[SuperHeroCompleteInformation]
@@ -23,10 +24,6 @@ class TeamTraining:
                 id=member.id,
                 alignment=member.biography["alignment"],
                 power_stats=member.powerstats,
-                fight_stats=None,
-                attacks=None,
-                is_aligned=None,
-                ready_to_fight=False,
             )
             members_in_training.append(member_train)
         return members_in_training
@@ -44,8 +41,18 @@ class TeamTraining:
         """
         Alignment: será el de la mayoría.
         """
-
-        NotImplementedError
+        result = ""
+        team_alignment = {}
+        for member in self.members:
+            if member.alignment in team_alignment:
+                team_alignment[member.alignment] += 1
+                if team_alignment[member.alignment] > 2:
+                    result = member.alignment
+                    break
+            else:
+                team_alignment[member.alignment] = 1
+        print("team_alignment_count: ", team_alignment)
+        return result
 
     def fb(self):
         """

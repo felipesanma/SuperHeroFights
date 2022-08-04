@@ -13,8 +13,6 @@ class Team:
         self.members = self.manage.members
         self.members_by_id = self.manage.members_id
         self.ready_to_fight = ready_to_fight
-        self.alignment = None
-        self.ready_to_fight = ready_to_fight
 
     def _set_train(self):
         if len(self.manage.members) != MAX_HERO_MEMBERS:
@@ -22,6 +20,7 @@ class Team:
             self.manage.add_multiple_random(n_of_heroes)
         self.train = TeamTraining(members=self.manage.members)
         self.members_in_training = self.train.members
+        self.alignment = self.train.team_alignment
         print("Team ready to train")
 
     def create(self):
