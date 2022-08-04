@@ -7,7 +7,10 @@ class TeamTraining:
     """
 
     def __init__(self, *, members: list):
-        self.members = members
+        self.members = self._convert_to_train_member(members)
+
+    def _convert_to_train_member(self, members):
+        NotImplementedError
 
     def actual_stamina(self):
         """
@@ -22,6 +25,7 @@ class TeamTraining:
         """
         Alignment: será el de la mayoría.
         """
+
         NotImplementedError
 
     def fb(self):

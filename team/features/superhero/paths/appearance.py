@@ -1,5 +1,5 @@
 from .base_api import BaseApi
-from .dto import Appearance
+from .superhero_api_dto import Appearance
 
 
 class CharacterAppearance(BaseApi):

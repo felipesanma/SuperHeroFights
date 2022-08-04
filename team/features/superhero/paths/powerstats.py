@@ -1,5 +1,5 @@
 from .base_api import BaseApi
-from .dto import Powerstats
+from .superhero_api_dto import Powerstats
 
 
 class CharacterPowerStats(BaseApi):

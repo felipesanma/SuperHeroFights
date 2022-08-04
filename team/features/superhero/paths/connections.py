@@ -1,5 +1,5 @@
 from .base_api import BaseApi
-from .dto import Connections
+from .superhero_api_dto import Connections
 
 
 class CharacterConnections(BaseApi):

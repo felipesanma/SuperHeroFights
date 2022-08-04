@@ -1,7 +1,7 @@
 import logging
 from collections import namedtuple
 
-from .dto import DTO
+from .superhero_api_dto import DTO
 
 dto_result = namedtuple("result", ["dto_class", "status_code"])
 json_result = namedtuple("result", ["json_response", "status_code"])

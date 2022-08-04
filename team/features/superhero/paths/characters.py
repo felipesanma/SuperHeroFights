@@ -1,5 +1,5 @@
 from .base_api import BaseApi
-from .dto import SuperHeroCompleteInformation
+from .superhero_api_dto import SuperHeroCompleteInformation
 
 
 class Characters(BaseApi):

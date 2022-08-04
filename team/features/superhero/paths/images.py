@@ -1,5 +1,5 @@
 from .base_api import BaseApi
-from .dto import ImageSize
+from .superhero_api_dto import ImageSize
 
 
 class CharacterImages(BaseApi):

@@ -1,5 +1,5 @@
 from .base_api import BaseApi
-from .dto import Work
+from .superhero_api_dto import Work
 
 
 class CharacterWork(BaseApi):
