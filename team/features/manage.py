@@ -74,3 +74,24 @@ class TeamManagement:
     def add_multiple_random(self, quantity: int) -> None:
         for i in range(quantity):
             self.add_random_member()
+
+    def remove_member_by_id(self, id: int) -> None:
+
+        if id not in self.members_id:
+            msg = f"Heroe id={id}, not exist in team. Check members id in members_id object"
+            print(msg)
+            return msg, 407
+
+        removed_member_from_id = self.members_id.pop(id)
+        for i, hero_name in enumerate(self.members_names):
+            if hero_name == removed_member_from_id:
+                removed_member_from_name = self.members_names.pop(i)
+                removed_member_from_members = self.members.pop(i)
+
+        print(f"REMOVED: Heroe {removed_member_from_id} id: {id}")
+
+    def remove_all_members(self) -> None:
+        self.members.clear()
+        self.members_names.clear()
+        self.members_id.clear()
+        print("All members removed")
