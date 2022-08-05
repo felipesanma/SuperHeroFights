@@ -44,4 +44,8 @@ class TeamFight:
         return member.attacks["fast"]
 
     def random_attack(self, member: MemberInFight):
-        NotImplementedError
+        attacks = list(member.attacks.keys())
+        attack = random.choice(attacks)
+        print(f"{member.name} attack with: {attack}")
+        attack_damage = member.attacks[attack]
+        return attack_damage

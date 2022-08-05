@@ -176,9 +176,9 @@ hero = team.fight.choose_random_alive_member()
 print("attack damage: ", team.fight.fast_attack(hero))
 """
 
-# Test 22 fast attack
+# Test 23 random attack
 team = Team()
 team.create()
 team.prepare_to_fight()
 hero = team.fight.choose_random_alive_member()
-print("attack damage: ", team.fight.fast_attack(hero))
+print("attack damage: ", team.fight.random_attack(hero))
