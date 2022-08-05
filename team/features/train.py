@@ -59,6 +59,16 @@ class TeamTraining:
 
         print("Health Points added")
 
+    def feature_increment_by_factor(self, feature: str, factor: int) -> None:
+
+        for member in self.members:
+            dict_member = member.dict()
+            if feature in dict_member:
+                dict_member[feature] = dict_member[feature] * factor
+            else:
+                print(f"Feature: {feature}, is not a valid key")
+                break
+
     def get_team_alignment(self) -> str:
         """
         Alignment: será el de la mayoría.
@@ -110,21 +120,21 @@ class TeamTraining:
         spd_con = 0.2 * member.fight_stats["speed"]
         cbt_con = 0.1 * member.fight_stats["combat"]
         stats_con = int_con + spd_con + cbt_con
-        return int(round(member.fb * (stats_con), 0))
+        return round(member.fb * (stats_con), 1)
 
     def strong_attack(self, member) -> float | int:
         str_con = 0.6 * member.fight_stats["strength"]
         pw_con = 0.2 * member.fight_stats["power"]
         cbt_con = 0.2 * member.fight_stats["combat"]
         stats_con = str_con + pw_con + cbt_con
-        return int(round(member.fb * (stats_con), 0))
+        return round(member.fb * (stats_con), 1)
 
     def fast_attack(self, member) -> float | int:
         str_con = 0.2 * member.fight_stats["strength"]
         spd_con = 0.55 * member.fight_stats["speed"]
         dbt_con = 0.25 * member.fight_stats["durability"]
         stats_con = str_con + spd_con + dbt_con
-        return int(round(member.fb * (stats_con), 0))
+        return round(member.fb * (stats_con), 1)
 
     def all_attacks(self) -> None:
 

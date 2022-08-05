@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from typing import Optional, Union
 
 
@@ -40,3 +40,6 @@ class MemberInTraining:
     attacks: Optional[Attacks] = None
     is_aligned: Optional[bool] = None
     ready_to_fight: Optional[bool] = None
+
+    def dict(self):
+        return {k: str(v) for k, v in asdict(self).items()}
