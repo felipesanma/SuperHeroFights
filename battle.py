@@ -23,15 +23,15 @@ class Battle:
         unique_ids = self._get_unique_heroes_ids()
         ids_team_1 = unique_ids[:5]
         ids_team_2 = unique_ids[5:10]
-        print(f"Creating Team 1 '{self._team_1.name}'")
+        print(f"Creating '{self._team_1.name}'")
         self._team_1.manage.add_multiple_by_id(ids_team_1)
-        print(f"Creating Team 2 '{self._team_2.name}'")
+        print(f"Creating '{self._team_2.name}'")
         self._team_2.manage.add_multiple_by_id(ids_team_2)
         self._team_1.create()
         self._team_2.create()
         print(f"{self._team_1.name}: {self._team_1.members_names}")
         print(f"{self._team_2.name}: {self._team_2.members_names}")
-        print(f"Team 1 '{self._team_1.name}' and Team 2 '{self._team_2.name}' created")
+        print(f"'{self._team_1.name}' and '{self._team_2.name}' created")
 
     def _get_unique_heroes_ids(self) -> list:
         unique_ids = []
@@ -47,9 +47,7 @@ class Battle:
     def prepare_teams_to_fight(self) -> None:
         self._team_1.prepare_to_fight()
         self._team_2.prepare_to_fight()
-        print(
-            f"Team 1 '{self._team_1.name}' and Team 2 '{self._team_2.name}' are ready to fight"
-        )
+        print(f"'{self._team_1.name}' and '{self._team_2.name}' are ready to fight")
 
     def _start_heroes_fight(self, hero_1: MemberInFight, hero_2: MemberInFight):
         hp_1 = hero_1.hp
@@ -117,18 +115,14 @@ class Battle:
             member for member in self._team_2.members_fighting if member.is_alive
         ]
         time.sleep(1)
-        print(
-            f"Alive members for team 1 '{self._team_1.name}': {len(alive_heroes_team_1)}"
-        )
+        print(f"Alive members for '{self._team_1.name}': {len(alive_heroes_team_1)}")
         time.sleep(1)
-        print(
-            f"Alive members for team 2 '{self._team_2.name}': {len(alive_heroes_team_2)}"
-        )
+        print(f"Alive members for '{self._team_2.name}': {len(alive_heroes_team_2)}")
 
         return len(alive_heroes_team_1), len(alive_heroes_team_2)
 
     def start(self) -> None:
-
+        print("Battle Starts Now!!")
         alive_heroes_team_1, alive_heroes_team_2 = self._get_alive_heroes_in_battle()
         fights = 0
         winner = None
@@ -144,9 +138,9 @@ class Battle:
                     hero_team_2 = winner
                     hero_team_1 = self._team_1.fight.choose_random_alive_member()
             time.sleep(1)
-            print(f"team 1 '{self._team_1.name}' choose hero: {hero_team_1.name}")
+            print(f"'{self._team_1.name}' choose hero: {hero_team_1.name}")
             time.sleep(1)
-            print(f"team 2 '{self._team_2.name}' choose hero: {hero_team_2.name}")
+            print(f"'{self._team_2.name}' choose hero: {hero_team_2.name}")
             time.sleep(2)
             winner, looser = self._start_heroes_fight(hero_team_1, hero_team_2)
             print(f"{winner.name} won!")
