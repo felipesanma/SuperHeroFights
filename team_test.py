@@ -136,9 +136,15 @@ team.train.all_attacks()
 team.train.hp()
 team.train.hp_increment_by_factor(10)
 team.train.ready_to_fight()
-"""
 
 # Test 17 prepare to fight
 team = Team()
 team.create()
 team.prepare_to_fight()
+"""
+
+# Test 18 prepare to fight
+team = Team()
+team.create()
+team.prepare_to_fight()
+print(team.members_fighting)

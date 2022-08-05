@@ -1,4 +1,4 @@
-from .features import MAX_HERO_MEMBERS, TeamManagement, TeamTraining
+from .features import MAX_HERO_MEMBERS, TeamFight, TeamManagement, TeamTraining
 
 
 class Team:
@@ -19,7 +19,7 @@ class Team:
             n_of_heroes = MAX_HERO_MEMBERS - len(self.manage.members)
             self.manage.add_multiple_random(n_of_heroes)
         self.train = TeamTraining(members=self.manage.members)
-        self.members_in_training = self.train.members
+        self.members_training = self.train.members
         self.alignment = self.train.team_alignment
         print("Team is ready to train")
 
@@ -34,3 +34,5 @@ class Team:
         self.train.all_attacks()
         self.train.hp()
         self.train.ready_to_fight()
+        self.fight = TeamFight(members=self.members_training)
+        self.members_fighting = self.fight.members
