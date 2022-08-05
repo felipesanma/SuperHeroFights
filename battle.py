@@ -1,4 +1,5 @@
 import random
+import time
 
 from team import Team
 from team.features.config import POSSIBLE_HEROE_ID
@@ -68,11 +69,11 @@ class Battle:
             print(
                 f"'{hero_1.name}' attacks with {attack_name_hero_1} dealing {attack_damage_hero_1}"
             )
-
+            time.sleep(1)
             hp_2 -= attack_damage_hero_1
 
             print(f"'{hero_2.name}' now has {hp_2} HP")
-
+            time.sleep(1)
             if hp_2 < 0:
 
                 winner = hero_1
@@ -82,10 +83,10 @@ class Battle:
             print(
                 f"'{hero_2.name}' attack with {attack_name_hero_2} dealing {attack_damage_hero_2}"
             )
-
+            time.sleep(1)
             hp_1 -= attack_damage_hero_2
             print(f"'{hero_1.name}' has {hp_1} HP")
-
+            time.sleep(1)
             if hp_1 < 0:
 
                 winner = hero_2
@@ -108,7 +109,9 @@ class Battle:
         alive_heroes_team_2 = [
             member for member in self._team_2.members_fighting if member.is_alive
         ]
+        time.sleep(1)
         print(f"alive members team 1 '{self._team_1.name}': {len(alive_heroes_team_1)}")
+        time.sleep(1)
         print(f"alive members team 2 '{self._team_2.name}': {len(alive_heroes_team_2)}")
 
         return len(alive_heroes_team_1), len(alive_heroes_team_2)
@@ -129,12 +132,14 @@ class Battle:
                 else:
                     hero_team_2 = winner
                     hero_team_1 = self._team_1.fight.choose_random_alive_member()
-
+            time.sleep(1)
             print(f"team 1 '{self._team_1.name}' choose hero: {hero_team_1.name}")
+            time.sleep(1)
             print(f"team 2 '{self._team_2.name}' choose hero: {hero_team_2.name}")
+            time.sleep(2)
             winner, looser = self._start_heroes_fight(hero_team_1, hero_team_2)
             print(f"{winner.name} won!")
-
+            time.sleep(1)
             if winner.id in self._team_1.members_by_id:
                 for member in self._team_2.members_fighting:
                     if member.id == looser.id:
@@ -154,5 +159,5 @@ class Battle:
             battle_winner = self._team_1
         else:
             battle_winner = self._team_2
-
+        time.sleep(1)
         print(f"Winner Team Battle '{battle_winner.name}'")
