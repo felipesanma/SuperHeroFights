@@ -147,10 +147,17 @@ team = Team()
 team.create()
 team.prepare_to_fight()
 print(team.members_fighting)
-"""
 
 # Test 19 choose random member
 team = Team()
 team.create()
 team.prepare_to_fight()
 hero = team.fight.choose_random_alive_member()
+"""
+
+# Test 20 mental attack
+team = Team()
+team.create()
+team.prepare_to_fight()
+hero = team.fight.choose_random_alive_member()
+mental_attack_damage = team.fight.mental_attack(hero)

@@ -31,12 +31,12 @@ class TeamFight:
     def choose_random_alive_member(self) -> MemberInFight:
         alive_members = [member for member in self.members if member.is_alive]
         member_going_to_fight = random.choice(alive_members)
+        print(f"Member going to fight: {member_going_to_fight.name}")
         return member_going_to_fight
 
-        NotImplementedError
-
     def mental_attack(self, member: MemberInFight) -> float | int:
-        NotImplementedError
+        print(member.attacks["mental"])
+        return member.attacks["mental"]
 
     def strong_attack(self, member: MemberInFight) -> float | int:
         NotImplementedError
