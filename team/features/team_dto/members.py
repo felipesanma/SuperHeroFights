@@ -20,11 +20,19 @@ class Attacks:
 
 
 @dataclass
+class AvatarImages:
+    xs: Optional[str] = None
+    sm: Optional[str] = None
+    md: Optional[str] = None
+    lg: Optional[str] = None
+
+
+@dataclass
 class MemberInTraining:
     name: Optional[str] = None
     id: Optional[int] = None
     alignment: Optional[str] = None
-    avatar: Optional[str] = None
+    avatar: Optional[AvatarImages] = None
     fb: Optional[Union[int, float]] = None
     hp: Optional[Union[int, float]] = None
     power_stats: Optional[Stats] = None
