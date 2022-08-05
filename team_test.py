@@ -108,16 +108,42 @@ print("team alignment: ", team.alignment)
 team.train.fb()
 team.train.fight_stats()
 team.train.all_attacks()
-"""
 
 # Test 14 hp
 team = Team()
 team.create()
-print("team alignment: ", team.alignment)
+team.train.fb()
+team.train.fight_stats()
+team.train.all_attacks()
+team.train.hp()
+
+
+# Test 15 ready to fight
+team = Team()
+team.create()
+team.train.fb()
+team.train.fight_stats()
+team.train.all_attacks()
+team.train.hp()
+team.train.ready_to_fight()
+
+# Test 16 hp increment by factor
+team = Team()
+team.create()
 team.train.fb()
 team.train.fight_stats()
 team.train.all_attacks()
 team.train.hp()
 team.train.hp_increment_by_factor(10)
 team.train.ready_to_fight()
-print(team.members_in_training)
+"""
+
+# Test 16 hp increment by factor
+team = Team()
+team.create()
+team.train.fb()
+team.train.fight_stats()
+team.train.all_attacks()
+team.train.hp()
+team.train.hp_increment_by_factor(10)
+team.train.ready_to_fight()

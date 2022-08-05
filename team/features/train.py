@@ -56,7 +56,6 @@ class TeamTraining:
                     0,
                 )
             )
-            print(member.name, member.hp)
 
         print("Health Points added")
 
@@ -64,7 +63,8 @@ class TeamTraining:
 
         for member in self.members:
             member.hp = member.hp * factor
-            print(member.name, member.hp)
+
+        print(f"Health Points incremented by {factor}")
 
     def get_team_alignment(self) -> str:
         """
