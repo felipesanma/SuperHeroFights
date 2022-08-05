@@ -99,10 +99,10 @@ class TeamTraining:
         return member.fb * (stats_con)
 
     def fast_attack(self, member):
-        int_con = 0.7 * member.fight_stats["intelligence"]
-        spd_con = 0.2 * member.fight_stats["speed"]
-        cbt_con = 0.1 * member.fight_stats["combat"]
-        stats_con = int_con + spd_con + cbt_con
+        str_con = 0.2 * member.fight_stats["strength"]
+        spd_con = 0.55 * member.fight_stats["speed"]
+        dbt_con = 0.25 * member.fight_stats["durability"]
+        stats_con = str_con + spd_con + dbt_con
         return member.fb * (stats_con)
 
     def all_attacks(self):
