@@ -27,3 +27,18 @@ class TeamFight:
             )
             members_in_fight.append(member_fight)
         return members_in_fight
+
+    def choose_random_member(self) -> MemberInFight:
+        NotImplementedError
+
+    def mental_attack(self, member: MemberInFight) -> float | int:
+        NotImplementedError
+
+    def strong_attack(self, member: MemberInFight) -> float | int:
+        NotImplementedError
+
+    def fast_attack(self, member: MemberInFight) -> float | int:
+        NotImplementedError
+
+    def random_attack(self, member: MemberInFight):
+        NotImplementedError
