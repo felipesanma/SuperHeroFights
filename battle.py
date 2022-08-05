@@ -71,8 +71,11 @@ class Battle:
             )
             time.sleep(1)
             hp_2 -= attack_damage_hero_1
+            if hp_2 < 0:
+                print(f"'{hero_2.name}' now has 0 HP")
+            else:
 
-            print(f"'{hero_2.name}' now has {hp_2} HP")
+                print(f"'{hero_2.name}' now has {hp_2} HP")
             time.sleep(1)
             if hp_2 < 0:
 
@@ -85,7 +88,11 @@ class Battle:
             )
             time.sleep(1)
             hp_1 -= attack_damage_hero_2
-            print(f"'{hero_1.name}' has {hp_1} HP")
+            if hp_1 < 0:
+                print(f"'{hero_1.name}' now has 0 HP")
+            else:
+
+                print(f"'{hero_1.name}' now has {hp_1} HP")
             time.sleep(1)
             if hp_1 < 0:
 
@@ -110,9 +117,13 @@ class Battle:
             member for member in self._team_2.members_fighting if member.is_alive
         ]
         time.sleep(1)
-        print(f"alive members team 1 '{self._team_1.name}': {len(alive_heroes_team_1)}")
+        print(
+            f"Alive members for team 1 '{self._team_1.name}': {len(alive_heroes_team_1)}"
+        )
         time.sleep(1)
-        print(f"alive members team 2 '{self._team_2.name}': {len(alive_heroes_team_2)}")
+        print(
+            f"Alive members for team 2 '{self._team_2.name}': {len(alive_heroes_team_2)}"
+        )
 
         return len(alive_heroes_team_1), len(alive_heroes_team_2)
 
