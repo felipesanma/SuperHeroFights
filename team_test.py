@@ -153,11 +153,32 @@ team = Team()
 team.create()
 team.prepare_to_fight()
 hero = team.fight.choose_random_alive_member()
-"""
 
 # Test 20 mental attack
 team = Team()
 team.create()
 team.prepare_to_fight()
 hero = team.fight.choose_random_alive_member()
-mental_attack_damage = team.fight.mental_attack(hero)
+print("attack damage: ", team.fight.mental_attack(hero)
+
+# Test 21 strong attack
+team = Team()
+team.create()
+team.prepare_to_fight()
+hero = team.fight.choose_random_alive_member()
+print("attack damage: ", team.fight.strong_attack(hero))
+
+# Test 22 fast attack
+team = Team()
+team.create()
+team.prepare_to_fight()
+hero = team.fight.choose_random_alive_member()
+print("attack damage: ", team.fight.fast_attack(hero))
+"""
+
+# Test 22 fast attack
+team = Team()
+team.create()
+team.prepare_to_fight()
+hero = team.fight.choose_random_alive_member()
+print("attack damage: ", team.fight.fast_attack(hero))

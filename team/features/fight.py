@@ -35,14 +35,13 @@ class TeamFight:
         return member_going_to_fight
 
     def mental_attack(self, member: MemberInFight) -> float | int:
-        print(member.attacks["mental"])
         return member.attacks["mental"]
 
     def strong_attack(self, member: MemberInFight) -> float | int:
-        NotImplementedError
+        return member.attacks["strong"]
 
     def fast_attack(self, member: MemberInFight) -> float | int:
-        NotImplementedError
+        return member.attacks["fast"]
 
     def random_attack(self, member: MemberInFight):
         NotImplementedError
