@@ -48,3 +48,18 @@ class Battle:
         print(
             f"Team 1 '{self._team_1.name}' and Team 2 '{self._team_2.name}' are ready to fight"
         )
+        print(self._team_1.members_fighting)
+        print(self._team_2.members_fighting)
+
+    def start(self) -> None:
+
+        alive_heroes_team_1 = [
+            member for member in self._team_1.members_fighting if member.is_alive
+        ]
+        alive_heroes_team_2 = [
+            member for member in self._team_2.members_fighting if member.is_alive
+        ]
+        print(f"{self._team_1.name}: {self._team_1.members_names}")
+        print(f"{self._team_2.name}: {self._team_2.members_names}")
+        print("alive members team 1: ", len(alive_heroes_team_1))
+        print("alive members team 2: ", len(alive_heroes_team_2))

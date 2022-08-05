@@ -7,10 +7,10 @@ class Team:
     """
 
     def __init__(
-        self, *, name: str = "", members: list = [], ready_to_fight: bool = False
+        self, *, name: str = None, members: list = None, ready_to_fight: bool = False
     ):
         self.name = name
-        self.manage = TeamManagement(members=members)
+        self.manage = TeamManagement(members=members or [])
         self.members_names = self.manage.members_names
         self.members = self.manage.members
         self.members_by_id = self.manage.members_id
