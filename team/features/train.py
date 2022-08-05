@@ -73,11 +73,20 @@ class TeamTraining:
         print("Filiation Coefficient added")
 
     def fight_stats(self):
+        def f(v, fb):
+            return (fb / 1.1) * (2 * v + self.actual_stamina())
 
         for member in self.members:
-            print(member)
-            for stat in member.power_stats:
-                print(stat)
+            print(member.name)
+            print(member.power_stats)
+            print(member.fb)
+            print(member.alignment)
+
+            member.fight_stats = {
+                k: f(v, member.fb) for k, v in member.power_stats.items()
+            }
+
+            print(member.fight_stats)
 
     def mental_attack(self):
         NotImplementedError
