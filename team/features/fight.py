@@ -31,7 +31,7 @@ class TeamFight:
     def choose_random_alive_member(self) -> MemberInFight:
         alive_members = [member for member in self.members if member.is_alive]
         member_going_to_fight = random.choice(alive_members)
-        print(f"Member going to fight: {member_going_to_fight.name}")
+        # print(f"Member going to fight: {member_going_to_fight.name}")
         return member_going_to_fight
 
     def mental_attack(self, member: MemberInFight) -> float | int:
@@ -43,7 +43,7 @@ class TeamFight:
     def fast_attack(self, member: MemberInFight) -> float | int:
         return member.attacks["fast"]
 
-    def random_attack(self, member: MemberInFight) -> tuple(str, int | float):
+    def random_attack(self, member: MemberInFight):
         attacks = list(member.attacks.keys())
         attack = random.choice(attacks)
         attack_damage = member.attacks[attack]
