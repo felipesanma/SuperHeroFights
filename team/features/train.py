@@ -49,8 +49,12 @@ class TeamTraining:
 
         for member in self.members:
 
-            member.hp = 100 + (1 + (self.actual_stamina() / 10)) * (
-                stats_contribution(member)
+            member.hp = int(
+                round(
+                    100
+                    + (1 + (self.actual_stamina() / 10)) * (stats_contribution(member)),
+                    0,
+                )
             )
 
         print("Health Points added")
@@ -91,7 +95,7 @@ class TeamTraining:
 
     def fight_stats(self) -> None:
         def fs(v, fb) -> float | int:
-            return (fb / 1.1) * (2 * v + self.actual_stamina())
+            return int(round((fb / 1.1) * (2 * v + self.actual_stamina()), 0))
 
         for member in self.members:
 
@@ -106,21 +110,21 @@ class TeamTraining:
         spd_con = 0.2 * member.fight_stats["speed"]
         cbt_con = 0.1 * member.fight_stats["combat"]
         stats_con = int_con + spd_con + cbt_con
-        return member.fb * (stats_con)
+        return int(round(member.fb * (stats_con), 0))
 
     def strong_attack(self, member) -> float | int:
         str_con = 0.6 * member.fight_stats["strength"]
         pw_con = 0.2 * member.fight_stats["power"]
         cbt_con = 0.2 * member.fight_stats["combat"]
         stats_con = str_con + pw_con + cbt_con
-        return member.fb * (stats_con)
+        return int(round(member.fb * (stats_con), 0))
 
     def fast_attack(self, member) -> float | int:
         str_con = 0.2 * member.fight_stats["strength"]
         spd_con = 0.55 * member.fight_stats["speed"]
         dbt_con = 0.25 * member.fight_stats["durability"]
         stats_con = str_con + spd_con + dbt_con
-        return member.fb * (stats_con)
+        return int(round(member.fb * (stats_con), 0))
 
     def all_attacks(self) -> None:
 
