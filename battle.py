@@ -66,12 +66,12 @@ class Battle:
             )
 
             print(
-                f"'{hero_1.name}' attack with {attack_name_hero_1} dealing {attack_damage_hero_1}"
+                f"'{hero_1.name}' attacks with {attack_name_hero_1} dealing {attack_damage_hero_1}"
             )
 
             hp_2 -= attack_damage_hero_1
 
-            print(f"'{hero_2.name}' has {hp_2} HP")
+            print(f"'{hero_2.name}' now has {hp_2} HP")
 
             if hp_2 < 0:
 
@@ -133,7 +133,7 @@ class Battle:
             print(f"team 1 '{self._team_1.name}' choose hero: {hero_team_1.name}")
             print(f"team 2 '{self._team_2.name}' choose hero: {hero_team_2.name}")
             winner, looser = self._start_heroes_fight(hero_team_1, hero_team_2)
-            print(f"Winner hero fight is {winner.name}")
+            print(f"{winner.name} won!")
 
             if winner.id in self._team_1.members_by_id:
                 for member in self._team_2.members_fighting:
