@@ -91,11 +91,19 @@ class TeamTraining:
         stats_con = int_con + spd_con + cbt_con
         return member.fb * (stats_con)
 
-    def strong_attack(self):
-        NotImplementedError
+    def strong_attack(self, member):
+        str_con = 0.6 * member.fight_stats["strength"]
+        pw_con = 0.2 * member.fight_stats["power"]
+        cbt_con = 0.2 * member.fight_stats["combat"]
+        stats_con = str_con + pw_con + cbt_con
+        return member.fb * (stats_con)
 
-    def fast_attack(self):
-        NotImplementedError
+    def fast_attack(self, member):
+        int_con = 0.7 * member.fight_stats["intelligence"]
+        spd_con = 0.2 * member.fight_stats["speed"]
+        cbt_con = 0.1 * member.fight_stats["combat"]
+        stats_con = int_con + spd_con + cbt_con
+        return member.fb * (stats_con)
 
     def all_attacks(self):
         NotImplementedError
