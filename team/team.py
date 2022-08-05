@@ -6,8 +6,10 @@ class Team:
     Generador de equipo (máximo {MAX_HERO_MEMBERS} miembros)
     """
 
-    def __init__(self, *, members: list = [], ready_to_fight: bool = False):
-
+    def __init__(
+        self, *, name: str = "", members: list = [], ready_to_fight: bool = False
+    ):
+        self.name = name
         self.manage = TeamManagement(members=members)
         self.members_names = self.manage.members_names
         self.members = self.manage.members
