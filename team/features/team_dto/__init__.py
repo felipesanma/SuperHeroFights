@@ -1,1 +1,1 @@
-from .members import Stats, Attacks, MemberInTraining
+from .members import Attacks, MemberInFight, MemberInTraining, Stats

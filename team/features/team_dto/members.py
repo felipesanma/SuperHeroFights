@@ -43,3 +43,13 @@ class MemberInTraining:
 
     def dict(self):
         return {k: str(v) for k, v in asdict(self).items()}
+
+
+@dataclass
+class MemberInFight:
+    name: Optional[str] = None
+    id: Optional[int] = None
+    avatar: Optional[AvatarImages] = None
+    hp: Optional[Union[int, float]] = None
+    attacks: Optional[Attacks] = None
+    is_alive: Optional[bool] = None
