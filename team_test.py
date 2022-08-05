@@ -100,12 +100,22 @@ team.create()
 print("team alignment: ", team.alignment)
 team.train.fb()
 team.train.fight_stats()
-"""
 
-# Test 12 fightStats
+# Test 13 attacks
 team = Team()
 team.create()
 print("team alignment: ", team.alignment)
 team.train.fb()
 team.train.fight_stats()
 team.train.all_attacks()
+"""
+
+# Test 14 hp
+team = Team()
+team.create()
+print("team alignment: ", team.alignment)
+team.train.fb()
+team.train.fight_stats()
+team.train.all_attacks()
+team.train.hp()
+print(team.members_in_training)
