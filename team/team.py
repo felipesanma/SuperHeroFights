@@ -21,10 +21,16 @@ class Team:
         self.train = TeamTraining(members=self.manage.members)
         self.members_in_training = self.train.members
         self.alignment = self.train.team_alignment
-        print("Team ready to train")
+        print("Team is ready to train")
 
     def create(self):
+        print("Creating Team")
         self._set_train()
 
     def prepare_to_fight(self):
-        NotImplementedError
+        print("Preparing team to fight")
+        self.train.fb()
+        self.train.fight_stats()
+        self.train.all_attacks()
+        self.train.hp()
+        self.train.ready_to_fight()

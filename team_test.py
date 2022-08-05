@@ -138,12 +138,7 @@ team.train.hp_increment_by_factor(10)
 team.train.ready_to_fight()
 """
 
-# Test 16 hp increment by factor
+# Test 17 prepare to fight
 team = Team()
 team.create()
-team.train.fb()
-team.train.fight_stats()
-team.train.all_attacks()
-team.train.hp()
-team.train.hp_increment_by_factor(10)
-team.train.ready_to_fight()
+team.prepare_to_fight()

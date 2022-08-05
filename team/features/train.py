@@ -57,7 +57,7 @@ class TeamTraining:
                 )
             )
 
-        print("Health Points added")
+        print("Health Points ready")
 
     def hp_increment_by_factor(self, factor: int) -> None:
 
@@ -80,7 +80,7 @@ class TeamTraining:
                     break
             else:
                 team_alignment[member.alignment] = 1
-        print("Team Alignment ready")
+        print(f"Team Alignment is '{result}'")
         return result
 
     def fb(self) -> None:
@@ -98,7 +98,7 @@ class TeamTraining:
                 member.is_aligned = False
 
             member.fb = fb
-        print("Filiation Coefficient added")
+        print("Filiation Coefficient ready")
 
     def fight_stats(self) -> None:
         def fs(v, fb) -> float | int:
@@ -110,7 +110,7 @@ class TeamTraining:
                 k: fs(v, member.fb) for k, v in member.power_stats.items()
             }
 
-        print("Fight Stats added")
+        print("Fight Stats ready")
 
     def mental_attack(self, member) -> float | int:
         int_con = 0.7 * member.fight_stats["intelligence"]
@@ -143,7 +143,7 @@ class TeamTraining:
                 "fast": self.fast_attack(member),
             }
 
-        print("Attacks added")
+        print("Attacks ready")
 
     def ready_to_fight(self) -> None:
 

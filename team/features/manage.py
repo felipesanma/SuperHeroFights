@@ -38,7 +38,7 @@ class TeamManagement:
         self.members_names.append(superheroe.name)
         self.members_id[id] = superheroe.name
 
-        msg = f"NEW HEROE ADDED: {superheroe.name}"
+        msg = f"New member: {superheroe.name}"
         print(msg)
         return msg, status_code
 
@@ -63,7 +63,7 @@ class TeamManagement:
         self.members_names.append(superheroe.name)
         self.members_id[id] = superheroe.name
 
-        msg = f"NEW HEROE ADDED: {superheroe.name}"
+        msg = f"New member: {superheroe.name}"
         print(msg)
         return msg, status_code
 
@@ -88,7 +88,7 @@ class TeamManagement:
                 removed_member_from_name = self.members_names.pop(i)
                 removed_member_from_members = self.members.pop(i)
 
-        print(f"REMOVED: Heroe {removed_member_from_id} id: {id}")
+        print(f"Removed: Heroe {removed_member_from_id} id: {id}")
 
     def remove_all_members(self) -> None:
         self.members.clear()
