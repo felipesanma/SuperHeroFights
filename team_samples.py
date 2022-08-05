@@ -1,7 +1,6 @@
 from team import Team
 
-"""
-print('INIT: TEAM 1')
+print("INIT: TEAM 1")
 # Test add_member_by_id method
 team = Team()
 hero_id = 1
@@ -22,7 +21,7 @@ new_member = team.manage.add_random_member()
 new_member = team.manage.add_random_member()
 print(team.members_by_id)
 
-print('END: TEAM 1')
+print("END: TEAM 1")
 
 print("INIT: TEAM 2")
 # Test 6 multiple add by id
@@ -42,7 +41,6 @@ team_3 = Team()
 team_3.manage.add_multiple_random(n_of_heroes)
 print(team_3.members_by_id)
 print("END: TEAM 3")
-
 
 
 print("INIT: TEAM 4")
@@ -157,7 +155,7 @@ team = Team()
 team.create()
 team.prepare_to_fight()
 hero = team.fight.choose_random_alive_member()
-print("attack damage: ", team.fight.mental_attack(hero)
+print("attack damage: ", team.fight.mental_attack(hero))
 
 # Test 21 strong attack
 team = Team()
@@ -172,7 +170,6 @@ team.create()
 team.prepare_to_fight()
 hero = team.fight.choose_random_alive_member()
 print("attack damage: ", team.fight.fast_attack(hero))
-"""
 
 # Test 23 random attack
 team = Team()
