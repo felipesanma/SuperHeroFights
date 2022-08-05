@@ -36,7 +36,24 @@ class TeamTraining:
         return random.randint(0, 10)
 
     def hp(self):
-        NotImplementedError
+        """
+        Health Points o puntos de vida.
+        """
+
+        def stats_contribution(member):
+
+            str_con = 0.8 * member.fight_stats["strength"]
+            dbt_con = 0.7 * member.fight_stats["durability"]
+            pw_con = member.fight_stats["power"]
+            return (str_con + dbt_con + pw_con) / 2
+
+        for member in self.members:
+
+            member.hp = 100 + (1 + (self.actual_stamina() / 10)) * (
+                stats_contribution(member)
+            )
+            print(member.name, member.hp)
+        print("Health Points added")
 
     def get_team_alignment(self) -> str:
         """

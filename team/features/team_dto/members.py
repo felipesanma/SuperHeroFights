@@ -26,6 +26,7 @@ class MemberInTraining:
     alignment: Optional[str] = None
     avatar: Optional[str] = None
     fb: Optional[Union[int, float]] = None
+    hp: Optional[Union[int, float]] = None
     power_stats: Optional[Stats] = None
     fight_stats: Optional[Stats] = None
     attacks: Optional[Attacks] = None
