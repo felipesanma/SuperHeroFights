@@ -106,4 +106,14 @@ class TeamTraining:
         return member.fb * (stats_con)
 
     def all_attacks(self):
-        NotImplementedError
+
+        for member in self.members:
+
+            member.attacks = {
+                "mental": self.mental_attack(member),
+                "strong": self.strong_attack(member),
+                "fast": self.fast_attack(member),
+            }
+            print(member.name, member.attacks)
+
+        print("Attacks added")
