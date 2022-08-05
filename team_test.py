@@ -1,5 +1,3 @@
-from ctypes import alignment
-
 from team import Team
 
 """
