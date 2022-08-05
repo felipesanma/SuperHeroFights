@@ -56,18 +56,15 @@ class TeamTraining:
                     0,
                 )
             )
+            print(member.name, member.hp)
 
         print("Health Points added")
 
-    def feature_increment_by_factor(self, feature: str, factor: int) -> None:
+    def hp_increment_by_factor(self, factor: int) -> None:
 
         for member in self.members:
-            dict_member = member.dict()
-            if feature in dict_member:
-                dict_member[feature] = dict_member[feature] * factor
-            else:
-                print(f"Feature: {feature}, is not a valid key")
-                break
+            member.hp = member.hp * factor
+            print(member.name, member.hp)
 
     def get_team_alignment(self) -> str:
         """
