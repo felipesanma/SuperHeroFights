@@ -133,3 +133,11 @@ class TeamTraining:
             }
 
         print("Attacks added")
+
+    def ready_to_fight(self) -> None:
+
+        for member in self.members:
+
+            member.ready_to_fight = True
+
+        print("Team is ready to fight")
