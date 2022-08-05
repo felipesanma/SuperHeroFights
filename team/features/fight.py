@@ -28,7 +28,11 @@ class TeamFight:
             members_in_fight.append(member_fight)
         return members_in_fight
 
-    def choose_random_member(self) -> MemberInFight:
+    def choose_random_alive_member(self) -> MemberInFight:
+        alive_members = [member for member in self.members if member.is_alive]
+        member_going_to_fight = random.choice(alive_members)
+        return member_going_to_fight
+
         NotImplementedError
 
     def mental_attack(self, member: MemberInFight) -> float | int:

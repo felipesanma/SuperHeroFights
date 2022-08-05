@@ -141,10 +141,16 @@ team.train.ready_to_fight()
 team = Team()
 team.create()
 team.prepare_to_fight()
-"""
 
-# Test 18 prepare to fight
+# Test 18 members_fighting
 team = Team()
 team.create()
 team.prepare_to_fight()
 print(team.members_fighting)
+"""
+
+# Test 19 choose random member
+team = Team()
+team.create()
+team.prepare_to_fight()
+hero = team.fight.choose_random_alive_member()
