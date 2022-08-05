@@ -23,14 +23,14 @@ class Team:
         self.train = TeamTraining(members=self.manage.members)
         self.members_training = self.train.members
         self.alignment = self.train.team_alignment
-        print("Team is ready to train")
+        print(f"Team '{self.name}' is ready to train")
 
     def create(self):
-        print("Creating Team")
+        print(f"Preparing Team '{self.name}'")
         self._set_train()
 
     def prepare_to_fight(self):
-        print("Preparing team to fight")
+        print(f"Preparing team '{self.name}' to fight")
         self.train.fb()
         self.train.fight_stats()
         self.train.all_attacks()
@@ -38,3 +38,4 @@ class Team:
         self.train.ready_to_fight()
         self.fight = TeamFight(members=self.members_training)
         self.members_fighting = self.fight.members
+        print(f"Team '{self.name}' is ready to fight")

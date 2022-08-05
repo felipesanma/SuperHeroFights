@@ -150,5 +150,3 @@ class TeamTraining:
         for member in self.members:
 
             member.ready_to_fight = True
-
-        print("Team is ready to fight")
