@@ -14,7 +14,8 @@ battle.prepare_teams_to_fight()
 battle.start()
 ```
 
-## Display video
+## Battle Demo (video)
 
 
-<video src='https://www.loom.com/share/78f3ee1d42394410b3f8adf4db27ebab' width=180/>
+https://user-images.githubusercontent.com/50891841/183052495-fb838cd4-df5c-459a-9cb8-d46d18349d3f.mp4
+
