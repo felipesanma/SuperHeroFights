@@ -75,12 +75,12 @@ print(team.members)
 # Test 9 create
 team = Team()
 team.create()
-print(team.members_in_training)
+print(team.members_training)
 
 # Test 10 create
 team = Team()
 team.create()
-print(team.members_in_training)
+print(team.members_training)
 print(team.alignment)
 
 # Test 11 fb
@@ -88,7 +88,7 @@ team = Team()
 team.create()
 print("team alignment: ", team.alignment)
 team.train.fb()
-print(team.members_in_training)
+print(team.members_training)
 
 # Test 12 fightStats
 team = Team()

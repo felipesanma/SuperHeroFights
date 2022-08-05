@@ -43,9 +43,8 @@ class TeamFight:
     def fast_attack(self, member: MemberInFight) -> float | int:
         return member.attacks["fast"]
 
-    def random_attack(self, member: MemberInFight):
+    def random_attack(self, member: MemberInFight) -> tuple(str, int | float):
         attacks = list(member.attacks.keys())
         attack = random.choice(attacks)
-        print(f"{member.name} attack with: {attack}")
         attack_damage = member.attacks[attack]
-        return attack_damage
+        return attack, attack_damage

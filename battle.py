@@ -2,6 +2,7 @@ import random
 
 from team import Team
 from team.features.config import POSSIBLE_HEROE_ID
+from team.features.team_dto.members import MemberInFight
 
 
 class Battle:
@@ -48,10 +49,57 @@ class Battle:
         print(
             f"Team 1 '{self._team_1.name}' and Team 2 '{self._team_2.name}' are ready to fight"
         )
-        print(self._team_1.members_fighting)
-        print(self._team_2.members_fighting)
 
-    def start(self) -> None:
+    def _start_heroes_fight(
+        self, hero_1: MemberInFight, hero_2: MemberInFight
+    ) -> tuple(MemberInFight, MemberInFight):
+        hp_1 = hero_1.hp
+        hp_2 = hero_2.hp
+        winner = None
+        looser = None
+        while hp_1 > 0 and hp_2 > 0:
+
+            attack_name_hero_1, attack_damage_hero_1 = self._team_1.fight.random_attack(
+                hero_1
+            )
+
+            attack_name_hero_2, attack_damage_hero_2 = self._team_2.fight.random_attack(
+                hero_2
+            )
+
+            print(
+                f"'{hero_1}' attack with {attack_name_hero_1} dealing {attack_damage_hero_1}"
+            )
+
+            hp_2 -= attack_damage_hero_1
+
+            if hp_2 < 0:
+
+                winner = hero_1
+                looser = hero_2
+                break
+
+            print(
+                f"'{hero_2}' attack with {attack_name_hero_2} dealing {attack_damage_hero_2}"
+            )
+
+            hp_1 -= attack_damage_hero_2
+
+            if hp_1 < 0:
+
+                winner = hero_2
+                looser = hero_1
+                break
+        return winner, looser
+
+    def _choose_alive_heroes_to_fight(self) -> tuple(MemberInFight, MemberInFight):
+
+        hero_team_1 = self._team_1.fight.choose_random_alive_member()
+        hero_team_2 = self._team_2.fight.choose_random_alive_member()
+
+        return hero_team_1, hero_team_2
+
+    def _get_alive_heroes_in_battle(self) -> tuple(list, list):
 
         alive_heroes_team_1 = [
             member for member in self._team_1.members_fighting if member.is_alive
@@ -59,7 +107,44 @@ class Battle:
         alive_heroes_team_2 = [
             member for member in self._team_2.members_fighting if member.is_alive
         ]
-        print(f"{self._team_1.name}: {self._team_1.members_names}")
-        print(f"{self._team_2.name}: {self._team_2.members_names}")
-        print("alive members team 1: ", len(alive_heroes_team_1))
-        print("alive members team 2: ", len(alive_heroes_team_2))
+        print(f"alive members team 1 '{self._team_1.name}': {len(alive_heroes_team_1)}")
+        print(f"alive members team 2 '{self._team_2.name}': {len(alive_heroes_team_2)}")
+
+        return alive_heroes_team_1, alive_heroes_team_2
+
+    def start(self) -> None:
+
+        alive_heroes_team_1, alive_heroes_team_2 = self._get_alive_heroes_in_battle()
+        fights = 0
+        winner = None
+        while alive_heroes_team_1 > 0 and alive_heroes_team_2 > 0:
+            if fights == 0:
+                hero_team_1, hero_team_2 = self._choose_alive_heroes_to_fight()
+            else:
+
+                if winner.id in self._team_1.members_by_id:
+                    hero_team_1 = winner
+                    hero_team_2 = self._team_2.fight.choose_random_alive_member()
+                else:
+                    hero_team_2 = winner
+                    hero_team_1 = self._team_1.fight.choose_random_alive_member()
+
+            print(f"team 1 '{self._team_1.name}' choose hero: {hero_team_1.name}")
+            print(f"team 2 '{self._team_2.name}' choose hero: {hero_team_2.name}")
+            winner, looser = self._start_heroes_fight(hero_team_1, hero_team_2)
+            print(f"Winner is {winner.name}")
+
+            if winner.id in self._team_1.members_by_id:
+                for member in self._team_2.members_fighting:
+                    if member.id == looser.id:
+                        member.is_alive = False
+            else:
+                for member in self._team_1.members_fighting:
+                    if member.id == looser.id:
+                        member.is_alive = False
+
+            (
+                alive_heroes_team_1,
+                alive_heroes_team_2,
+            ) = self._get_alive_heroes_in_battle()
+            fights += 1
