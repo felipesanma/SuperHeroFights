@@ -92,7 +92,7 @@ if boton:
 
             # ROW 3 ------------------------------------------------------------------------
             row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.columns(
-                (1.0, 1.5, 1.0, 1.0, 1.0)
+                (1.0, 1.5, 2.0, 1.0, 1.0)
             )
             with row2_1:
                 st.header(battle._team_1.name)
