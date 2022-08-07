@@ -34,13 +34,13 @@ class TeamFight:
         # print(f"Member going to fight: {member_going_to_fight.name}")
         return member_going_to_fight
 
-    def mental_attack(self, member: MemberInFight) -> float | int:
+    def mental_attack(self, member: MemberInFight):
         return member.attacks["mental"]
 
-    def strong_attack(self, member: MemberInFight) -> float | int:
+    def strong_attack(self, member: MemberInFight):
         return member.attacks["strong"]
 
-    def fast_attack(self, member: MemberInFight) -> float | int:
+    def fast_attack(self, member: MemberInFight):
         return member.attacks["fast"]
 
     def random_attack(self, member: MemberInFight):
