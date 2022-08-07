@@ -29,7 +29,7 @@ class TeamTraining:
             members_in_training.append(member_train)
         return members_in_training
 
-    def actual_stamina(self) -> int:
+    def actual_stamina(self):
         """
         AS: Actual Stamina, valor aleatorio antre 0 y 10
         """
@@ -40,7 +40,7 @@ class TeamTraining:
         Health Points o puntos de vida.
         """
 
-        def stats_contribution(member) -> float | int:
+        def stats_contribution(member):
 
             str_con = 0.8 * member.fight_stats["strength"]
             dbt_con = 0.7 * member.fight_stats["durability"]
@@ -112,21 +112,21 @@ class TeamTraining:
 
         print("Fight Stats ready")
 
-    def mental_attack(self, member) -> float | int:
+    def mental_attack(self, member):
         int_con = 0.7 * member.fight_stats["intelligence"]
         spd_con = 0.2 * member.fight_stats["speed"]
         cbt_con = 0.1 * member.fight_stats["combat"]
         stats_con = int_con + spd_con + cbt_con
         return round(member.fb * (stats_con), 1)
 
-    def strong_attack(self, member) -> float | int:
+    def strong_attack(self, member):
         str_con = 0.6 * member.fight_stats["strength"]
         pw_con = 0.2 * member.fight_stats["power"]
         cbt_con = 0.2 * member.fight_stats["combat"]
         stats_con = str_con + pw_con + cbt_con
         return round(member.fb * (stats_con), 1)
 
-    def fast_attack(self, member) -> float | int:
+    def fast_attack(self, member):
         str_con = 0.2 * member.fight_stats["strength"]
         spd_con = 0.55 * member.fight_stats["speed"]
         dbt_con = 0.25 * member.fight_stats["durability"]
