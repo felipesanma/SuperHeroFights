@@ -65,38 +65,29 @@ class Battle:
             )
 
             print(
-                f"'{hero_1.name}' attacks with {attack_name_hero_1} dealing {attack_damage_hero_1}"
+                f"{hero_1.name} attacks with {attack_name_hero_1} dealing {attack_damage_hero_1}"
             )
             time.sleep(1)
             hp_2 -= attack_damage_hero_1
             if hp_2 < 0:
-                print(f"'{hero_2.name}' now has 0 HP")
-            else:
-
-                print(f"'{hero_2.name}' now has {hp_2} HP")
-            time.sleep(1)
-            if hp_2 < 0:
-
+                print(f"{hero_2.name} now has 0 HP")
                 winner = hero_1
                 looser = hero_2
                 break
-
+            print(f"{hero_2.name} now has {hp_2} HP")
+            time.sleep(1)
             print(
-                f"'{hero_2.name}' attack with {attack_name_hero_2} dealing {attack_damage_hero_2}"
+                f"{hero_2.name} attack with {attack_name_hero_2} dealing {attack_damage_hero_2}"
             )
             time.sleep(1)
             hp_1 -= attack_damage_hero_2
             if hp_1 < 0:
-                print(f"'{hero_1.name}' now has 0 HP")
-            else:
-
-                print(f"'{hero_1.name}' now has {hp_1} HP")
-            time.sleep(1)
-            if hp_1 < 0:
-
+                print(f"{hero_1.name} now has 0 HP")
                 winner = hero_2
                 looser = hero_1
                 break
+            print(f"{hero_1.name} now has {hp_1} HP")
+        time.sleep(1)
         return winner, looser
 
     def _choose_alive_heroes_to_fight(self):
@@ -141,7 +132,7 @@ class Battle:
             print(f"'{self._team_1.name}' choose hero: {hero_team_1.name}")
             time.sleep(1)
             print(f"'{self._team_2.name}' choose hero: {hero_team_2.name}")
-            time.sleep(2)
+            time.sleep(1)
             winner, looser = self._start_heroes_fight(hero_team_1, hero_team_2)
             print(f"{winner.name} won!")
             time.sleep(1)
