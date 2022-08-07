@@ -101,7 +101,7 @@ class TeamTraining:
         print("Filiation Coefficient ready")
 
     def fight_stats(self) -> None:
-        def fs(v, fb) -> float | int:
+        def fs(v, fb):
             return int(round((fb / 1.1) * (2 * v + self.actual_stamina()), 0))
 
         for member in self.members:
