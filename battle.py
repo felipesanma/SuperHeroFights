@@ -307,9 +307,13 @@ class Battle:
         if alive_heroes_team_1 > 0:
             battle_winner = self._team_1
             battle_looser = self._team_2
+
+            alive_heroes_winner = alive_heroes_team_1
         else:
             battle_winner = self._team_2
             battle_looser = self._team_1
+
+            alive_heroes_winner = alive_heroes_team_2
         time.sleep(1)
         text = f"Winner Team Battle '{battle_winner.name}'"
         for i in range(len(text) + 1):
@@ -317,8 +321,16 @@ class Battle:
             time.sleep(0.05)
         st.snow()
         battle_info = {
-            "winner": battle_winner.name,
-            "looser": battle_looser.name,
+            "winner": {
+                "team_name": battle_winner.name,
+                "alive_heroes": alive_heroes_winner,
+                "death_heroes": 5 - alive_heroes_winner,
+            },
+            "looser": {
+                "team_name": battle_looser.name,
+                "alive_heroes": 0,
+                "death_heroes": 5,
+            },
             "total_fights": fights,
             "fights": battle_history,
         }
