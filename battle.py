@@ -247,7 +247,7 @@ class Battle:
                 else:
                     hero_team_2 = winner
                     hero_team_1 = self._team_1.fight.choose_random_alive_member()
-            text = f"Fight N°:{fights+1}"
+            text = f"Fight N°: {fights+1}"
             for i in range(len(text) + 1):
                 message.markdown("## %s" % text[0:i])
                 time.sleep(0.05)
