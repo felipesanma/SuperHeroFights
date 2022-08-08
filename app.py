@@ -1,10 +1,9 @@
-from itertools import cycle
-
 import streamlit as st
 import streamlit.components.v1 as components
 from PIL import Image
 
 from battle import Battle
+from displays import display_5_vs_5_teams
 
 # SETUP ------------------------------------------------------------------------
 favicon = Image.open("favicon.ico")
@@ -54,27 +53,37 @@ components.html(Title_html)
 
 
 # ROW 2 ------------------------------------------------------------------------
-with st.form("Teams_names"):
-
-    row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.columns(
-        (0.1, 0.5, 0.05, 0.5, 0.1)
-    )
-    with row2_1:
-
-        team_1 = st.text_input("Team 1", value="Marvel", key="team_1")
-        boton = st.form_submit_button("Create Teams")
-
-    with row2_spacer2:
-        st.write("")
-        st.write("")
-        st.subheader("VS")
-
-    with row2_2:
-
-        team_2 = st.text_input("Team 2", value="Capcom", key="team_2")
+@st.experimental_memo
+def create_battle(name_1, name_2):
+    battle = Battle(name_team_1=name_1, name_team_2=name_2)
+    battle.create_teams()
+    battle.prepare_teams_to_fight()
+    return battle
 
 
-if boton:
+row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.columns(
+    (0.1, 0.5, 0.05, 0.5, 0.1)
+)
+with row2_1:
+
+    team_1 = st.text_input("Team 1", value="Marvel", key="team_1")
+    button1 = st.button("Create Teams")
+
+
+with row2_spacer2:
+    st.write("")
+    st.write("")
+    st.subheader("VS")
+
+with row2_2:
+
+    team_2 = st.text_input("Team 2", value="Capcom", key="team_2")
+
+if not st.session_state.get("button"):
+
+    st.session_state["button"] = button1
+
+if st.session_state["button"]:
 
     # Haciendo algunos check's
 
@@ -87,63 +96,42 @@ if boton:
 
         try:
 
-            battle = Battle(name_team_1=team_1, name_team_2=team_2)
-            battle.create_teams()
-
-            # ROW 3 ------------------------------------------------------------------------
-            row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.columns(
-                (1.0, 1.5, 2.0, 1.0, 1.0)
-            )
-            with row2_1:
-                st.header(battle._team_1.name)
-
-            with row2_2:
-                st.header(battle._team_2.name)
-
-            # ROW 4 ------------------------------------------------------------------------
-            images_team_1 = [member.images["sm"] for member in battle._team_1.members]
-            captions_team_1 = [member.name for member in battle._team_1.members]
-
-            images_team_2 = [member.images["sm"] for member in battle._team_2.members]
-            captions_team_2 = [member.name for member in battle._team_2.members]
-            cols = cycle(st.columns(11))
-            vs_image = ["vs_transparent.png"]
-            vs_caption = ["Versus"]
-            images = images_team_1 + vs_image + images_team_2
-
-            captions = captions_team_1 + vs_caption + captions_team_2
-            for idx, image in enumerate(images):
-                next(cols).image(image, width=100, caption=captions[idx])
-
+            battle = create_battle(team_1, team_2)
         except Exception as e:
 
             st.error("Something went grong...")
             st.exception(e)
             st.stop()
 
-        with st.spinner("Preparing teams to fight"):
+    st.session_state.battle = battle
+    # ROW 3 ------------------------------------------------------------------------
+    row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.columns(
+        (1.0, 1.5, 2.0, 1.0, 1.0)
+    )
+    with row2_1:
+        st.header(st.session_state.battle._team_1.name)
 
+    with row2_2:
+        st.header(st.session_state.battle._team_2.name)
+
+    # ROW 4 ------------------------------------------------------------------------
+    display_5_vs_5_teams(
+        st.session_state.battle._team_1.members,
+        st.session_state.battle._team_2.members,
+    )
+
+    # ROW 5 ------------------------------------------------------------------------
+    row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.columns(
+        (0.5, 0.5, 2.0, 0.1, 0.1)
+    )
+    with row2_spacer2:
+
+        if st.button("Start Battle"):
+            st.session_state["button"] = False
             try:
 
-                battle.prepare_teams_to_fight()
-
+                st.session_state.battle.streamlit_start()
             except Exception as e:
 
-                st.error("Something went grong...")
-                st.exception(e)
-                st.stop()
-
-    st.session_state.battle = battle
-
-if st.button("Start Battle"):
-    try:
-
-        st.session_state.battle.start()
-    except Exception as e:
-
-        st.error("You need to create the teams first")
-        print(e)
-    st.success("Battle ends!")
-
-else:
-    st.caption("You should create teams first")
+                st.error("You need to create the teams first")
+                print(e)

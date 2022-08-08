@@ -1,6 +1,8 @@
 import random
 import time
 
+import streamlit as st
+
 from team import Team
 from team.features.config import POSSIBLE_HEROE_ID
 from team.features.team_dto.members import MemberInFight
@@ -8,7 +10,7 @@ from team.features.team_dto.members import MemberInFight
 
 class Battle:
     """
-    Generador de batllas entre 2 equipos
+    Generador de batallas entre 2 equipos
     """
 
     def __init__(
@@ -128,6 +130,7 @@ class Battle:
                 else:
                     hero_team_2 = winner
                     hero_team_1 = self._team_1.fight.choose_random_alive_member()
+
             time.sleep(1)
             print(f"'{self._team_1.name}' choose hero: {hero_team_1.name}")
             time.sleep(1)
@@ -157,3 +160,157 @@ class Battle:
             battle_winner = self._team_2
         time.sleep(1)
         print(f"Winner Team Battle '{battle_winner.name}'")
+
+    def _streamlit_heroes_fight(
+        self, hero_1: MemberInFight, hero_2: MemberInFight, message
+    ):
+        hp_1 = hero_1.hp
+        hp_2 = hero_2.hp
+        winner = None
+        looser = None
+        fight_messages = []
+        while hp_1 > 0 and hp_2 > 0:
+
+            attack_name_hero_1, attack_damage_hero_1 = self._team_1.fight.random_attack(
+                hero_1
+            )
+
+            attack_name_hero_2, attack_damage_hero_2 = self._team_2.fight.random_attack(
+                hero_2
+            )
+            text = f"{hero_1.name} attacks with {attack_name_hero_1} dealing {attack_damage_hero_1}"
+            fight_messages.append(text)
+            for i in range(len(text) + 1):
+                message.markdown("## %s" % text[0:i])
+                time.sleep(0.05)
+            time.sleep(1)
+            hp_2 -= attack_damage_hero_1
+            if hp_2 < 0:
+                text = f"{hero_2.name} now has 0 HP"
+                fight_messages.append(text)
+                for i in range(len(text) + 1):
+                    message.markdown("## %s" % text[0:i])
+                    time.sleep(0.05)
+                winner = hero_1
+                looser = hero_2
+                break
+            text = f"{hero_2.name} now has {hp_2} HP"
+            fight_messages.append(text)
+            for i in range(len(text) + 1):
+                message.markdown("## %s" % text[0:i])
+                time.sleep(0.05)
+            time.sleep(1)
+
+            text = f"{hero_2.name} attack with {attack_name_hero_2} dealing {attack_damage_hero_2}"
+            fight_messages.append(text)
+            for i in range(len(text) + 1):
+                message.markdown("## %s" % text[0:i])
+                time.sleep(0.05)
+            time.sleep(1)
+            hp_1 -= attack_damage_hero_2
+            if hp_1 < 0:
+                text = f"{hero_1.name} now has 0 HP"
+                fight_messages.append(text)
+                for i in range(len(text) + 1):
+                    message.markdown("## %s" % text[0:i])
+                    time.sleep(0.05)
+                winner = hero_2
+                looser = hero_1
+                break
+            text = f"{hero_1.name} now has {hp_1} HP"
+            fight_messages.append(text)
+            for i in range(len(text) + 1):
+                message.markdown("## %s" % text[0:i])
+                time.sleep(0.05)
+            time.sleep(1)
+        time.sleep(1)
+        return winner, looser, fight_messages
+
+    def streamlit_start(self) -> None:
+        message = st.empty()
+        text = "Battle Starts Now!!"
+        for i in range(len(text) + 1):
+            message.markdown("## %s" % text[0:i])
+            time.sleep(0.05)
+        alive_heroes_team_1, alive_heroes_team_2 = self._get_alive_heroes_in_battle()
+        fights = 0
+        winner = None
+        battle_history = []
+        while alive_heroes_team_1 > 0 and alive_heroes_team_2 > 0:
+            if fights == 0:
+                hero_team_1, hero_team_2 = self._choose_alive_heroes_to_fight()
+            else:
+
+                if winner.id in self._team_1.members_by_id:
+                    hero_team_1 = winner
+                    hero_team_2 = self._team_2.fight.choose_random_alive_member()
+                else:
+                    hero_team_2 = winner
+                    hero_team_1 = self._team_1.fight.choose_random_alive_member()
+            text = f"Fight N°:{fights+1}"
+            for i in range(len(text) + 1):
+                message.markdown("## %s" % text[0:i])
+                time.sleep(0.05)
+            time.sleep(1)
+            text = f"'{self._team_1.name}' choose hero: {hero_team_1.name}"
+            for i in range(len(text) + 1):
+                message.markdown("## %s" % text[0:i])
+                time.sleep(0.05)
+            time.sleep(1)
+            text = f"'{self._team_2.name}' choose hero: {hero_team_2.name}"
+            for i in range(len(text) + 1):
+                message.markdown("## %s" % text[0:i])
+                time.sleep(0.05)
+            time.sleep(1)
+            text = f"Ready.....?"
+            for i in range(len(text) + 1):
+                message.markdown("## %s" % text[0:i])
+                time.sleep(0.05)
+            text = f"Go!"
+            for i in range(len(text) + 1):
+                message.markdown("## %s" % text[0:i])
+                time.sleep(0.05)
+            time.sleep(1)
+            winner, looser, fight_messages = self._streamlit_heroes_fight(
+                hero_team_1, hero_team_2, message
+            )
+            text = f"{winner.name} won!"
+            for i in range(len(text) + 1):
+                message.markdown("## %s" % text[0:i])
+                time.sleep(0.05)
+            st.balloons()
+            time.sleep(1)
+            if winner.id in self._team_1.members_by_id:
+                for member in self._team_2.members_fighting:
+                    if member.id == looser.id:
+                        member.is_alive = False
+            else:
+                for member in self._team_1.members_fighting:
+                    if member.id == looser.id:
+                        member.is_alive = False
+
+            (
+                alive_heroes_team_1,
+                alive_heroes_team_2,
+            ) = self._get_alive_heroes_in_battle()
+
+            event_fight = {
+                "number": fights,
+                "messages": fight_messages,
+                "winner": winner.name,
+                "looser": looser.name,
+            }
+            battle_history.append(event_fight)
+            fights += 1
+        battle_winner = None
+        if alive_heroes_team_1 > 0:
+            battle_winner = self._team_1
+        else:
+            battle_winner = self._team_2
+        time.sleep(1)
+        text = f"Winner Team Battle '{battle_winner.name}'"
+        for i in range(len(text) + 1):
+            message.markdown("## %s" % text[0:i])
+            time.sleep(0.05)
+        st.snow()
+        message.code(battle_history)
