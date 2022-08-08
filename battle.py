@@ -319,7 +319,7 @@ class Battle:
         battle_info = {
             "winner": battle_winner.name,
             "looser": battle_looser.name,
-            "total_fights": fights + 1,
+            "total_fights": fights,
             "fights": battle_history,
         }
         message.write(battle_info)
