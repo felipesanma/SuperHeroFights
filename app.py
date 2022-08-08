@@ -125,13 +125,16 @@ if st.session_state["button1"]:
 
         with st.spinner("Fighting in fast mode...."):
             try:
-                battle_info = st.session_state.battle.streamlit_fast_battle_start()
+                (
+                    battle_info,
+                    battle_history,
+                ) = st.session_state.battle.streamlit_fast_battle_start()
             except Exception as e:
                 st.error("You need to create the teams first")
                 print(e)
     else:
         try:
-            battle_info = st.session_state.battle.streamlit_start()
+            battle_info, battle_history = st.session_state.battle.streamlit_start()
         except Exception as e:
             st.error("You need to create the teams first")
             print(e)
@@ -140,13 +143,13 @@ if st.session_state["button1"]:
 
     st.write(battle_info)
 
-    total_fights = len(battle_info["fights"])
+    total_fights = len(battle_history)
     fights_names = []
     for i in range(total_fights):
         fights_names.append(f"Fight N°: {i+1}")
     tabs = st.tabs(fights_names)
 
-    for tab, fights_info in zip(tabs, battle_info["fights"]):
+    for tab, fight_info in zip(tabs, battle_history):
 
         with tab:
-            st.write(fights_info)
+            st.write(fight_info)

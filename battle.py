@@ -344,9 +344,8 @@ class Battle:
                 },
             },
             "total_fights": fights,
-            "fights": battle_history,
         }
-        return battle_info
+        return battle_info, battle_history
 
     def _streamlit_heroes_quick_fight(
         self, hero_1: MemberInFight, hero_2: MemberInFight
@@ -467,6 +466,5 @@ class Battle:
                 },
             },
             "total_fights": fights,
-            "fights": battle_history,
         }
-        return battle_info
+        return battle_info, battle_history
