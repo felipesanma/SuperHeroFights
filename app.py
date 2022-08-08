@@ -96,14 +96,13 @@ if st.session_state["button"]:
 
         try:
 
-            battle = create_battle(team_1, team_2)
+            st.session_state.battle = create_battle(team_1, team_2)
         except Exception as e:
 
             st.error("Something went grong...")
             st.exception(e)
             st.stop()
 
-    st.session_state.battle = battle
     # ROW 3 ------------------------------------------------------------------------
     row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.columns(
         (1.0, 1.5, 2.0, 1.0, 1.0)
