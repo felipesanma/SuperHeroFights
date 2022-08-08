@@ -80,11 +80,11 @@ with row2_2:
 
     team_2 = st.text_input("Team 2", value="Capcom", key="team_2")
 
-if not st.session_state.get("button"):
+if not st.session_state.get("button1"):
 
-    st.session_state["button"] = button1
+    st.session_state["button1"] = button1
 
-if st.session_state["button"]:
+if st.session_state["button1"]:
 
     # Haciendo algunos check's
 
@@ -120,12 +120,20 @@ if st.session_state["button"]:
         st.session_state.battle._team_2.members,
     )
 
-    # ROW 5 ------------------------------------------------------------------------
-    row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.columns(
-        (0.5, 0.5, 2.0, 0.1, 0.1)
-    )
     try:
-        st.session_state.battle.streamlit_start()
+        st.session_state.battle_info = st.session_state.battle.streamlit_start()
     except Exception as e:
         st.error("You need to create the teams first")
         print(e)
+
+    # ROW 5 ------------------------------------------------------------------------
+    figths_numbers = [
+        f"Fight N°: {fight}"
+        for fight in st.session_state.battle_info["fights"]["fight"]
+    ]
+    tabs = st.tabs(figths_numbers)
+
+    for tab, fights_info in zip(tabs, st.session_state.battle_info["fights"]):
+
+        with tab:
+            st.write(fights_info)

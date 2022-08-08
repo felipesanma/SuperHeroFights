@@ -334,4 +334,4 @@ class Battle:
             "total_fights": fights,
             "fights": battle_history,
         }
-        message.write(battle_info)
+        return battle_info
