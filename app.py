@@ -53,7 +53,7 @@ components.html(Title_html)
 
 
 # ROW 2 ------------------------------------------------------------------------
-@st.experimental_memo
+@st.cache
 def create_battle(name_1, name_2):
     battle = Battle(name_team_1=name_1, name_team_2=name_2)
     battle.create_teams()
