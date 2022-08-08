@@ -337,3 +337,116 @@ class Battle:
             "fights": battle_history,
         }
         return battle_info
+
+    def _streamlit_heroes_quick_fight(
+        self, hero_1: MemberInFight, hero_2: MemberInFight
+    ):
+        hp_1 = hero_1.hp
+        hp_2 = hero_2.hp
+        winner = None
+        looser = None
+        fight_messages = []
+        while hp_1 > 0 and hp_2 > 0:
+
+            attack_name_hero_1, attack_damage_hero_1 = self._team_1.fight.random_attack(
+                hero_1
+            )
+
+            attack_name_hero_2, attack_damage_hero_2 = self._team_2.fight.random_attack(
+                hero_2
+            )
+            text = f"{hero_1.name} attacks with {attack_name_hero_1} dealing {attack_damage_hero_1} damage"
+            fight_messages.append(text)
+            hp_2 -= attack_damage_hero_1
+            if hp_2 < 0:
+                text = f"{hero_2.name} has no HP"
+                fight_messages.append(text)
+                winner = hero_1
+                looser = hero_2
+                break
+            text = f"{hero_2.name} now has {int(hp_2)} HP"
+            fight_messages.append(text)
+            text = f"{hero_2.name} attack with {attack_name_hero_2} dealing {attack_damage_hero_2} damage"
+            fight_messages.append(text)
+            hp_1 -= attack_damage_hero_2
+            if hp_1 < 0:
+                text = f"{hero_1.name} has no HP"
+                fight_messages.append(text)
+                winner = hero_2
+                looser = hero_1
+                break
+            text = f"{hero_1.name} now has {int(hp_1)} HP"
+            fight_messages.append(text)
+        return winner, looser, fight_messages
+
+    def streamlit_fast_battle_start(self) -> None:
+        alive_heroes_team_1, alive_heroes_team_2 = self._get_alive_heroes_in_battle()
+        fights = 0
+        winner = None
+        battle_history = []
+        while alive_heroes_team_1 > 0 and alive_heroes_team_2 > 0:
+            if fights == 0:
+                hero_team_1, hero_team_2 = self._choose_alive_heroes_to_fight()
+            else:
+
+                if winner.id in self._team_1.members_by_id:
+                    hero_team_1 = winner
+                    hero_team_2 = self._team_2.fight.choose_random_alive_member()
+                else:
+                    hero_team_2 = winner
+                    hero_team_1 = self._team_1.fight.choose_random_alive_member()
+
+            winner, looser, fight_messages = self._streamlit_heroes_quick_fight(
+                hero_team_1, hero_team_2
+            )
+            if winner.id in self._team_1.members_by_id:
+                for member in self._team_2.members_fighting:
+                    if member.id == looser.id:
+                        member.is_alive = False
+            else:
+                for member in self._team_1.members_fighting:
+                    if member.id == looser.id:
+                        member.is_alive = False
+
+            (
+                alive_heroes_team_1,
+                alive_heroes_team_2,
+            ) = self._get_alive_heroes_in_battle()
+
+            event_fight = {
+                "fight": fights + 1,
+                "messages": fight_messages,
+                "winner": winner,
+                "looser": looser,
+            }
+            battle_history.append(event_fight)
+            fights += 1
+        battle_winner = None
+        if alive_heroes_team_1 > 0:
+            battle_winner = self._team_1
+            battle_looser = self._team_2
+
+            alive_heroes_winner = alive_heroes_team_1
+        else:
+            battle_winner = self._team_2
+            battle_looser = self._team_1
+
+            alive_heroes_winner = alive_heroes_team_2
+        st.snow()
+        battle_info = {
+            "winner": {
+                "team_name": battle_winner.name,
+                "alive_heroes": alive_heroes_winner,
+                "death_heroes": 5 - alive_heroes_winner,
+                "team_info": battle_winner,
+            },
+            "looser": {
+                "team_name": battle_looser.name,
+                "alive_heroes": 0,
+                "death_heroes": 5,
+                "team_info": battle_looser,
+            },
+            "total_fights": fights,
+            "fights": battle_history,
+        }
+        return battle_info

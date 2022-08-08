@@ -68,6 +68,7 @@ row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.columns(
 with row2_1:
 
     team_1 = st.text_input("Team 1", value="Marvel", key="team_1")
+    fast_agree = st.checkbox("Fast Mode")
     button1 = st.button("Start Battle")
 
 
@@ -79,6 +80,7 @@ with row2_spacer2:
 with row2_2:
 
     team_2 = st.text_input("Team 2", value="Capcom", key="team_2")
+
 
 if not st.session_state.get("button1"):
 
@@ -119,16 +121,26 @@ if st.session_state["button1"]:
         st.session_state.battle._team_1.members,
         st.session_state.battle._team_2.members,
     )
+    if fast_agree:
 
-    try:
-        battle_info = st.session_state.battle.streamlit_start()
-    except Exception as e:
-        st.error("You need to create the teams first")
-        print(e)
+        try:
+            battle_info = st.session_state.battle.streamlit_fast_battle_start()
+        except Exception as e:
+            st.error("You need to create the teams first")
+            print(e)
+    else:
+        try:
+            battle_info = st.session_state.battle.streamlit_start()
+        except Exception as e:
+            st.error("You need to create the teams first")
+            print(e)
 
     # ROW 5 ------------------------------------------------------------------------
-    figths_numbers = [f"Fight N°: {fight}" for fight in battle_info["fights"]["fight"]]
-    tabs = st.tabs(figths_numbers)
+    total_fights = len(battle_info["fights"])
+    fights_names = []
+    for i in range(total_fights):
+        fights_names.append(f"Fight N°: {i+1}")
+    tabs = st.tabs(fights_names)
 
     for tab, fights_info in zip(tabs, battle_info["fights"]):
 
