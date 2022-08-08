@@ -266,11 +266,12 @@ class Battle:
             for i in range(len(text) + 1):
                 message.markdown("## %s" % text[0:i])
                 time.sleep(0.05)
+            time.sleep(0.5)
             text = f"Go!"
             for i in range(len(text) + 1):
                 message.markdown("## %s" % text[0:i])
                 time.sleep(0.05)
-            time.sleep(1)
+            time.sleep(0.5)
             winner, looser, fight_messages = self._streamlit_heroes_fight(
                 hero_team_1, hero_team_2, message
             )
