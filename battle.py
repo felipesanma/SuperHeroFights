@@ -306,12 +306,20 @@ class Battle:
         battle_winner = None
         if alive_heroes_team_1 > 0:
             battle_winner = self._team_1
+            battle_looser = self._team_2
         else:
             battle_winner = self._team_2
+            battle_looser = self._team_1
         time.sleep(1)
         text = f"Winner Team Battle '{battle_winner.name}'"
         for i in range(len(text) + 1):
             message.markdown("## %s" % text[0:i])
             time.sleep(0.05)
         st.snow()
-        message.write(battle_history)
+        battle_info = {
+            "winner": battle_winner.name,
+            "looser": battle_looser.name,
+            "total_fights": fights + 1,
+            "fights": battle_history,
+        }
+        message.write(battle_info)
