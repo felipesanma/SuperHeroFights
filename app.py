@@ -68,7 +68,7 @@ row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.columns(
 with row2_1:
 
     team_1 = st.text_input("Team 1", value="Marvel", key="team_1")
-    button1 = st.button("Create Teams")
+    button1 = st.button("Start Battle")
 
 
 with row2_spacer2:
@@ -124,14 +124,8 @@ if st.session_state["button"]:
     row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.columns(
         (0.5, 0.5, 2.0, 0.1, 0.1)
     )
-    with row2_spacer2:
-
-        if st.button("Start Battle"):
-            st.session_state["button"] = False
-            try:
-
-                st.session_state.battle.streamlit_start()
-            except Exception as e:
-
-                st.error("You need to create the teams first")
-                print(e)
+    try:
+        st.session_state.battle.streamlit_start()
+    except Exception as e:
+        st.error("You need to create the teams first")
+        print(e)

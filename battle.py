@@ -313,4 +313,4 @@ class Battle:
             message.markdown("## %s" % text[0:i])
             time.sleep(0.05)
         st.snow()
-        message.code(battle_history)
+        message.write(battle_history)
