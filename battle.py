@@ -194,7 +194,7 @@ class Battle:
                 winner = hero_1
                 looser = hero_2
                 break
-            text = f"{hero_2.name} now has {round(hp_2,0)} HP"
+            text = f"{hero_2.name} now has {int(hp_2)} HP"
             fight_messages.append(text)
             for i in range(len(text) + 1):
                 message.markdown("## %s" % text[0:i])
@@ -217,7 +217,7 @@ class Battle:
                 winner = hero_2
                 looser = hero_1
                 break
-            text = f"{hero_1.name} now has {round(hp_1,0)} HP"
+            text = f"{hero_1.name} now has {int(hp_1)} HP"
             fight_messages.append(text)
             for i in range(len(text) + 1):
                 message.markdown("## %s" % text[0:i])
