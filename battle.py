@@ -178,7 +178,7 @@ class Battle:
             attack_name_hero_2, attack_damage_hero_2 = self._team_2.fight.random_attack(
                 hero_2
             )
-            text = f"{hero_1.name} attacks with {attack_name_hero_1} dealing {attack_damage_hero_1}"
+            text = f"{hero_1.name} attacks with {attack_name_hero_1} dealing {attack_damage_hero_1} damage"
             fight_messages.append(text)
             for i in range(len(text) + 1):
                 message.markdown("## %s" % text[0:i])
@@ -186,7 +186,7 @@ class Battle:
             time.sleep(1)
             hp_2 -= attack_damage_hero_1
             if hp_2 < 0:
-                text = f"{hero_2.name} now has 0 HP"
+                text = f"{hero_2.name} has no HP"
                 fight_messages.append(text)
                 for i in range(len(text) + 1):
                     message.markdown("## %s" % text[0:i])
@@ -194,14 +194,14 @@ class Battle:
                 winner = hero_1
                 looser = hero_2
                 break
-            text = f"{hero_2.name} now has {hp_2} HP"
+            text = f"{hero_2.name} now has {round(hp_2,0)} HP"
             fight_messages.append(text)
             for i in range(len(text) + 1):
                 message.markdown("## %s" % text[0:i])
                 time.sleep(0.05)
             time.sleep(1)
 
-            text = f"{hero_2.name} attack with {attack_name_hero_2} dealing {attack_damage_hero_2}"
+            text = f"{hero_2.name} attack with {attack_name_hero_2} dealing {attack_damage_hero_2} damage"
             fight_messages.append(text)
             for i in range(len(text) + 1):
                 message.markdown("## %s" % text[0:i])
@@ -209,7 +209,7 @@ class Battle:
             time.sleep(1)
             hp_1 -= attack_damage_hero_2
             if hp_1 < 0:
-                text = f"{hero_1.name} now has 0 HP"
+                text = f"{hero_1.name} has no HP"
                 fight_messages.append(text)
                 for i in range(len(text) + 1):
                     message.markdown("## %s" % text[0:i])
@@ -217,7 +217,7 @@ class Battle:
                 winner = hero_2
                 looser = hero_1
                 break
-            text = f"{hero_1.name} now has {hp_1} HP"
+            text = f"{hero_1.name} now has {round(hp_1,0)} HP"
             fight_messages.append(text)
             for i in range(len(text) + 1):
                 message.markdown("## %s" % text[0:i])
@@ -252,12 +252,12 @@ class Battle:
                 message.markdown("## %s" % text[0:i])
                 time.sleep(0.05)
             time.sleep(1)
-            text = f"'{self._team_1.name}' choose hero: {hero_team_1.name}"
+            text = f"{self._team_1.name} choose: {hero_team_1.name}"
             for i in range(len(text) + 1):
                 message.markdown("## %s" % text[0:i])
                 time.sleep(0.05)
             time.sleep(1)
-            text = f"'{self._team_2.name}' choose hero: {hero_team_2.name}"
+            text = f"{self._team_2.name} choose: {hero_team_2.name}"
             for i in range(len(text) + 1):
                 message.markdown("## %s" % text[0:i])
                 time.sleep(0.05)
