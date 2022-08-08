@@ -13,6 +13,10 @@ battle.create_teams()
 battle.prepare_teams_to_fight()
 battle.start()
 ```
+## APP (beta)
+
+Click here [SuperHeroBattle](https://felipesanma-superherofights-app-flj5ow.streamlitapp.com/)
+
 
 ## Battle Demo (video)
 
