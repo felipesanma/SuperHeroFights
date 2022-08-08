@@ -121,19 +121,16 @@ if st.session_state["button1"]:
     )
 
     try:
-        st.session_state.battle_info = st.session_state.battle.streamlit_start()
+        battle_info = st.session_state.battle.streamlit_start()
     except Exception as e:
         st.error("You need to create the teams first")
         print(e)
 
     # ROW 5 ------------------------------------------------------------------------
-    figths_numbers = [
-        f"Fight N°: {fight}"
-        for fight in st.session_state.battle_info["fights"]["fight"]
-    ]
+    figths_numbers = [f"Fight N°: {fight}" for fight in battle_info["fights"]["fight"]]
     tabs = st.tabs(figths_numbers)
 
-    for tab, fights_info in zip(tabs, st.session_state.battle_info["fights"]):
+    for tab, fights_info in zip(tabs, battle_info["fights"]):
 
         with tab:
             st.write(fights_info)

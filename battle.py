@@ -298,8 +298,8 @@ class Battle:
             event_fight = {
                 "fight": fights + 1,
                 "messages": fight_messages,
-                "winner": winner.name,
-                "looser": looser.name,
+                "winner": winner,
+                "looser": looser,
             }
             battle_history.append(event_fight)
             fights += 1
@@ -325,11 +325,13 @@ class Battle:
                 "team_name": battle_winner.name,
                 "alive_heroes": alive_heroes_winner,
                 "death_heroes": 5 - alive_heroes_winner,
+                "team_info": battle_winner,
             },
             "looser": {
                 "team_name": battle_looser.name,
                 "alive_heroes": 0,
                 "death_heroes": 5,
+                "team_info": battle_looser,
             },
             "total_fights": fights,
             "fights": battle_history,
