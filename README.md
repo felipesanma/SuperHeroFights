@@ -15,7 +15,12 @@ battle.start()
 ```
 ## APP (beta)
 
-Click here [SuperHeroBattle](https://felipesanma-superherofights-app-flj5ow.streamlitapp.com/)
+Click here: [SuperHeroBattle](https://felipesanma-superherofights-app-flj5ow.streamlitapp.com/)
+
+### To-do
+
+- Display info in fight (avatar, attacks, HP)
+- Display info after battle ends (by fight)
 
 
 ## Battle Demo (video)
