@@ -296,7 +296,7 @@ class Battle:
             ) = self._get_alive_heroes_in_battle()
 
             event_fight = {
-                "number": fights,
+                "fight": fights + 1,
                 "messages": fight_messages,
                 "winner": winner.name,
                 "looser": looser.name,
