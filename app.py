@@ -3,7 +3,7 @@ import streamlit.components.v1 as components
 from PIL import Image
 
 from battle import Battle
-from displays import display_5_vs_5_teams, display_json_battle_details
+from displays import display_5_vs_5_teams
 
 # SETUP ------------------------------------------------------------------------
 favicon = Image.open("favicon.ico")
@@ -141,4 +141,18 @@ if st.session_state["button1"]:
 
     # ROW 5 ------------------------------------------------------------------------
 
-    display_json_battle_details(battle_info, battle_history)
+    # display_json_battle_details(battle_info, battle_history)
+    ###not working
+
+    st.write(battle_info)
+
+    total_fights = len(battle_history)
+    fights_names = []
+    for i in range(total_fights):
+        fights_names.append(f"Fight N°: {i+1}")
+    tabs = st.tabs(fights_names)
+
+    for tab, fight_info in zip(tabs, battle_history):
+
+        with tab:
+            st.write(fight_info)
