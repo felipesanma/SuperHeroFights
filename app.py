@@ -141,8 +141,8 @@ if st.session_state["button1"]:
 
     # ROW 5 ------------------------------------------------------------------------
 
-    # display_json_battle_details(battle_info, battle_history)
     ###not working
+    # display_json_battle_details(battle_info, battle_history)
 
     st.write(battle_info)
 
