@@ -18,3 +18,18 @@ def display_5_vs_5_teams(members_team_1, members_team_2) -> None:
     captions = captions_team_1 + vs_caption + captions_team_2
     for idx, image in enumerate(images):
         next(cols).image(image, width=100, caption=captions[idx])
+
+
+def display_json_battle_details(battle_info, battle_history) -> None:
+    st.write(battle_info)
+
+    total_fights = len(battle_history)
+    fights_names = []
+    for i in range(total_fights):
+        fights_names.append(f"Fight N°: {i+1}")
+    tabs = st.tabs(fights_names)
+
+    for tab, fight_info in zip(tabs, battle_history):
+
+        with tab:
+            st.write(fight_info)
